@@ -29,10 +29,9 @@ labelInfo=json.loads(labelInfo)
 #
 #     model=load_model('./models/plant5000.h5')
 
-def index(request):
+def insect(request):
     context={'a':1}
-    return render(request,'index.html',context)
-
+    return render(request,'insect.html',context)
 
 
 def predictImage(request):
@@ -53,8 +52,8 @@ def predictImage(request):
      img_arr = img_arr.astype('float32') / 255
      model_graph = Graph()
      with model_graph.as_default():
-         print("plant")
-         model = load_model('./models/plant20201026_5000.h5')
+         print("insect")
+         model = load_model('./models/test20200517_128_32x32.h5')
          preds = model.predict_classes(img_arr)
 
          #print('測試資料的預測類別', preds)
@@ -63,8 +62,7 @@ def predictImage(request):
      predictedLabel = labelInfo[str(preds[0])]
      print(predictedLabel)
      context = {'filePathName': filePathName, 'predictedLabel': predictedLabel[1]}
-     return render(request, 'index.html', context)
-
+     return render(request, 'insect.html', context)
 
 
 def viewDataBase(request):
@@ -72,4 +70,4 @@ def viewDataBase(request):
     listOfImages=os.listdir('./media/')
     listOfImagesPath=['./media/'+i for i in listOfImages]
     context={'listOfImagesPath':listOfImagesPath}
-    return render(request,'viewDB.html',context)
+    return render(request,'viewDB2.html',context)

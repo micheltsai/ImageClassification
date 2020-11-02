@@ -16,15 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from firstApp import views
+from firstApp import views as firstviews
+from twoApp import views as twoviews
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('^$',views.index,name='homepage'),
-    url('predictImage',views.predictImage,name='predictImage'),
-    url('viewDataBase',views.viewDataBase,name='viewDataBase'),
+    url('^$',firstviews.index,name='homepage'),
+    url('insect',twoviews.insect,name='insect'),
+    url('predictImage',firstviews.predictImage,name='predictImage'),
+    url('viewDataBase',firstviews.viewDataBase,name='viewDataBase'),
+    url('predictImage2',twoviews.predictImage,name='predictImage2'),
+    url('viewDataBase2',twoviews.viewDataBase,name='viewDataBase2'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
