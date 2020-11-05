@@ -18,10 +18,6 @@ from tensorflow.python.keras.applications.densenet import decode_predictions
 img_height, img_width=32,32
 os.environ['CUDA_VISIBLE_DEVICES'] = "-1"
 
-with open('./models/classes.json','r',encoding="utf-8") as f:
-    labelInfo=f.read()
-
-labelInfo=json.loads(labelInfo)
 
 
 # model_graph = Graph()
@@ -43,9 +39,17 @@ def predictImage(request):
      modelPath=''
      if eid1=='Option1':
          modelPath='./models/plant20201026_5000.h5'
+         clas_data = './models/classes.json'
      else:
         modelPath='./models/insect5000.h5'
+        clas_data = './models/insectclass.json'
      print(modelPath)
+
+
+     with open(clas_data, 'r', encoding="utf-8") as f:
+         labelInfo = f.read()
+     labelInfo = json.loads(labelInfo)
+
      fs = FileSystemStorage()
      filePathName = fs.save(fileObj.name, fileObj)
      filePathName = fs.url(filePathName)
@@ -63,7 +67,6 @@ def predictImage(request):
          print("plant")
          model = load_model(modelPath)
          preds = model.predict_classes(img_arr)
-
          #print('測試資料的預測類別', preds)
      print(preds[0])
      #predictedLabel = labelInfo[str(np.argmax(preds[0]))]
