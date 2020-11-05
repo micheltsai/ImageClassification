@@ -44,7 +44,7 @@ def predictImage(request):
      if eid1=='Option1':
          modelPath='./models/plant20201026_5000.h5'
      else:
-        modelPath='./models/test20200517_128_32x32_5000.h5'
+        modelPath='./models/insect5000.h5'
      print(modelPath)
      fs = FileSystemStorage()
      filePathName = fs.save(fileObj.name, fileObj)
