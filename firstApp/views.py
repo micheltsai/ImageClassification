@@ -34,11 +34,18 @@ def index(request):
     return render(request,'index.html',context)
 
 
-
 def predictImage(request):
      print(request)
      print(request.POST.dict())
      fileObj = request.FILES['filePath']
+     eid1= request.POST.get('eid') #select models
+     print(eid1)
+     modelPath=''
+     if eid1=='Option1':
+         modelPath='./models/plant20201026_5000.h5'
+     else:
+        modelPath='./models/test20200517_128_32x32_5000.h5'
+     print(modelPath)
      fs = FileSystemStorage()
      filePathName = fs.save(fileObj.name, fileObj)
      filePathName = fs.url(filePathName)
@@ -54,7 +61,7 @@ def predictImage(request):
      model_graph = Graph()
      with model_graph.as_default():
          print("plant")
-         model = load_model('./models/plant20201026_5000.h5')
+         model = load_model(modelPath)
          preds = model.predict_classes(img_arr)
 
          #print('測試資料的預測類別', preds)

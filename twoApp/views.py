@@ -29,15 +29,17 @@ labelInfo=json.loads(labelInfo)
 #
 #     model=load_model('./models/plant5000.h5')
 
-def insect(request):
-    context={'a':1}
-    return render(request,'insect.html',context)
+def insect(request2):
+    context2={'a':1}
+    print("insect")
+    return render(request2,'insect.html',context2)
 
 
-def predictImage(request):
-     print(request)
-     print(request.POST.dict())
-     fileObj = request.FILES['filePath']
+def predictImage2(request2):
+     print('2')
+     print(request2)
+     print(request2.POST.dict())
+     fileObj = request2.FILES['filePath']
      fs = FileSystemStorage()
      filePathName = fs.save(fileObj.name, fileObj)
      filePathName = fs.url(filePathName)
@@ -62,10 +64,10 @@ def predictImage(request):
      predictedLabel = labelInfo[str(preds[0])]
      print(predictedLabel)
      context = {'filePathName': filePathName, 'predictedLabel': predictedLabel[1]}
-     return render(request, 'insect.html', context)
+     return render(request2, 'insect.html', context)
 
 
-def viewDataBase(request):
+def viewDataBase2(request):
     import os
     listOfImages=os.listdir('./media/')
     listOfImagesPath=['./media/'+i for i in listOfImages]

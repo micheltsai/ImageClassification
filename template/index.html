@@ -3,26 +3,24 @@
 {% block content%}
     <h2>植物疾病辨識</h2>
     <h4>Uplaod Image for Classification</h4>
-
-
-    
     <br>
    
     <form method="post" enctype="multipart/form-data" action="predictImage">
-  
-    {% csrf_token %}
-     <div class="col-md-4 col-sm-4">
-
-         <label for="fname">於此上傳圖檔:</label>
-         <input name="filePath" type="file">
-         <br><br><br>
-        <input type="submit" value="上傳圖片" >
-
-
-     <h2>最有可能的類別為 {{predictedLabel}}</h2>
-     <img src={{filePathName}} alt='imagename'>
-     {{filePathName}}
-    </div>
+        {% csrf_token %}
+         <div class="col-md-4 col-sm-4">
+             <label for="fname">於此上傳圖檔:</label>
+             <input name="filePath" type="file">
+             <p>選擇類別:</p>
+             <select name="eid">
+                <option value="plant">植物</option>
+                <option value="insect">害蟲</option>
+            </select>
+             <br><br><br>
+             <input type="submit" value="上傳圖片" >
+             <h2>最有可能的類別為 {{predictedLabel}}</h2>
+             <img src={{filePathName}} alt='imagename' width="40%" height="auto">
+             {{filePathName}}
+        </div>
     </form>
 <br>
 

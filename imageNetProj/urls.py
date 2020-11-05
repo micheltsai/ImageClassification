@@ -26,9 +26,9 @@ urlpatterns = [
     url('^$',firstviews.index,name='homepage'),
     url('insect',twoviews.insect,name='insect'),
     url('predictImage',firstviews.predictImage,name='predictImage'),
+    url('predictImage2',twoviews.predictImage2,name='predictImage2'),
     url('viewDataBase',firstviews.viewDataBase,name='viewDataBase'),
-    url('predictImage2',twoviews.predictImage,name='predictImage2'),
-    url('viewDataBase2',twoviews.viewDataBase,name='viewDataBase2'),
+    url('viewDataBase2',twoviews.viewDataBase2,name='viewDataBase2'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
