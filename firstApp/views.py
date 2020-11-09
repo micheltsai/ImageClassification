@@ -68,8 +68,8 @@ def predictImage(request):
          preds = model.predict_classes(img_arr)
          #print('測試資料的預測類別', preds)
      print(preds[0])
-     #predictedLabel = labelInfo[str(np.argmax(preds[0]))]
-     predictedLabel = labelInfo[str(preds[0])]
+     predictedLabel = labelInfo[str(np.argmax(preds[0]))]
+     #predictedLabel = labelInfo[str(preds[0])]
      print(predictedLabel)
      context = {'filePathName': filePathName, 'predictedLabel': predictedLabel[1]}
      return render(request, 'index.html', context)
