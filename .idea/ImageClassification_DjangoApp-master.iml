@@ -18,7 +18,7 @@
       <excludeFolder url="file://$MODULE_DIR$/py36_venv" />
       <excludeFolder url="file://$MODULE_DIR$/py36_venv2" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (ImageClassification_DjangoApp-master) (2)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (py36_venv2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

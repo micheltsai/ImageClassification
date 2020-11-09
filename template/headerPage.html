@@ -20,23 +20,22 @@
      <!-- MAIN CSS -->
 
 </head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50" style="margin-bottom: 2%">
 
-<div class="container" style="background-color: #204d74">
+<div class="container" style="background-color: #204d74 ;color: #f2f2f2; margin-top: 2%; ">
      <!-- MENU -->
      <header>
-         <section class="navbar navbar-default navbar-static-top" role="navigation" style="align-items: center;">
+         <h4 href="/" class="smoothScroll" >PlantClassification</h4>
+         <!--<section class="navbar navbar-default navbar-static-top" role="navigation" style="align-items: center;background-color: #204d74; color: #f2f2f2;">
+-->
                    <!-- MENU LINKS -->
-             <div class="collapse navbar-collapse" style="background-color: #204d74; color: #f2f2f2">
+            <!-- <div class="collapse navbar-collapse" style="background-color: #204d74; color: #f2f2f2">
                  <ul class="nav navbar-nav navbar-left">
-                     <li><h4 href="/" class="smoothScroll">PlantClassification</h4></li>
+                     <li></li>
                      <li><h4 href="/" class="smoothScroll"></h4></li>
-                     <li><a href="" class="smoothScroll">Home</a></li>
-                     <li><a href="" class="smoothScroll">Plant</a></li>
-                     <li><a href="insect" class="smoothScroll">insect</a></li>
                  </ul>
              </div>
-         </section>
+         </section>-->
     </header>
 
 
@@ -46,32 +45,35 @@
      <!-- HOME -->
 
 
-<div class="container" style="background-color: #f2f2f2">
+<div class="container" style="background-color: #f2f2f2; height:auto;">
      {% block content%}
      {% endblock %}
-    
+
 </div>
 
      <!-- FOOTER -->
-     <footer data-stellar-background-ratio="5">
-          <div class="container" >
-               <div class="row">
+<div class="container" style="background-color: #204d74 ;color: #f2f2f2; padding: 0px;">
+     <footer data-stellar-background-ratio="5" >
+          <div class="container" style="float:left;">
+                <div class="col-md-8">
+                   <div class="angle-up-btn text-align-center border-top">
+                       <h6  class="smoothScroll wow " data-wow-delay="1.2s"></h6>
+                   </div>
+               </div>
 
-                    
-
-                    <div class="col-md-12 col-sm-12 border-top" >
-
-                         <div class="col-md-2 col-sm-2 text-align-center">
-                              <div class="angle-up-btn"> 
-                                  <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"></a>
-                              </div>
-                         </div>   
-                    </div>
-                    
+               <div class="col-md-2">
+                   <div class="angle-up-btn text-align-center border-top">
+                       <h6  class="smoothScroll wow " data-wow-delay="1.2s">@植物病蟲害辨識</h6>
+                   </div>
+               </div>
+              <div class="col-md-2">
+                   <div class="angle-up-btn text-align-center border-top">
+                       <h6  class="smoothScroll wow " data-wow-delay="1.2s">s1061671@gm.pu.edu.tw</h6>
+                   </div>
                </div>
           </div>
      </footer>
-
+</div>
      <!-- SCRIPTS -->
      <script  src="{% static 'js/jquery.js' %}"></script>
      <script  src="{% static 'js/bootstrap.min.js' %}"></script>
