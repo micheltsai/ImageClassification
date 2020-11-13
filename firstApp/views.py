@@ -38,11 +38,13 @@ def predictImage(request):
      print(eid1)
      modelPath=''
      if eid1=='plant':
-         modelPath='./models/plant.h5'
-         clas_data = './models/classes.json'
+         modelPath='./models/plantv4_5000.h5'
+         clas_data = './models/plantclassv4.json'
+         classs=20
      else:
-        modelPath='./models/insect5000.h5'
-        clas_data = './models/insectclass.json'
+        modelPath='./models/insect12_8000.h5'
+        clas_data = './models/insectclassv2.json'
+        classs=12
 
      print(modelPath)
      with open(clas_data, 'r', encoding="utf-8") as f:
@@ -59,19 +61,86 @@ def predictImage(request):
      print(img_test.shape)
      img_arr=[]
      img_arr.append(img_test)
-     img_arr = np.array(img_arr, dtype="float") #/ 255.0
+     img_arr = np.array(img_arr, dtype="float") / 255.0
      img_arr = img_arr.astype('float32') / 255
      model_graph = Graph()
+
      with model_graph.as_default():
          print("plant")
          model = load_model(modelPath)
-         preds = model.predict_classes(img_arr)
-         #print('測試資料的預測類別', preds)
-     print(preds[0])
-     predictedLabel = labelInfo[str(np.argmax(preds[0]))]
+         predss = model.predict_classes(img_arr)
+         #改成predict
+         preds=model.predict(img_arr)
+
+     print(preds)
+     #最大
+     print("最大的數:{}, 位於{}".format(np.max(preds), np.argmax(preds)))
+     predmax = np.argmax(preds)
+
+     preds_ = preds
+     # 第二大
+     preds_[0][np.argmax(preds,axis=1)] = np.min(preds)
+     print(preds_)
+     print("第二大的數:{}, 位於{}".format(np.max(preds_), np.argmax(preds_)))
+     predtwo=np.argmax(preds_)
+
+     # 第二大
+     preds_[0][np.argmax(preds_, axis=1)] = np.min(preds)
+     print(preds_)
+     print("第三大的數:{}, 位於{}".format(np.max(preds_), np.argmax(preds_)))
+     predthr = np.argmax(preds_)
+
+
+     # 換算機率
+     sum = preds.sum()
+     print(sum)
+
+     predictedLabel = []
+
+     print("predmax")
+     print(predmax)
+     predictedLabel1 = labelInfo[str(predmax)]
+     print("predict max")
+     print(predictedLabel1)
+     predictedLabel.append(predictedLabel1[1])
+     #pp=preds[np.argmax(preds)]
+     #print(pp)
+     #print(pp[0]/sum)
+
+     print("predtwo")
+     print(predtwo)
+     predictedLabel2 = labelInfo[str(predtwo)]
+     print("predict two")
+     print(predictedLabel2)
+     #pp2 = preds_[np.argmax(preds_)]
+     #print(pp2)
+     #print(pp2[0] / sum)
+
+     if predictedLabel1[1] not in predictedLabel:
+         predictedLabel.append(predictedLabel2[1])
+
+
+     print("predthr")
+     print(predthr)
+     predictedLabel3 = labelInfo[str(predthr)]
+     print("predict 3")
+     print(predictedLabel3)
+
+     if predictedLabel2[1] not in predictedLabel:
+         predictedLabel.append(predictedLabel3[1])
+
+     #class
+     print(predss[0])
+     print("pred_class")
+     print(labelInfo[str(predss[0])])
+
+     #predictedLabel2 = labelInfo[str(np.argmax(preds[1]))]
      #predictedLabel = labelInfo[str(preds[0])]
-     print(predictedLabel)
-     context = {'filePathName': filePathName, 'predictedLabel': predictedLabel[1]}
+
+
+
+
+     context = {'filePathName': filePathName, 'predictedLabel': predictedLabel}
      return render(request, 'index.html', context)
 
 
@@ -82,3 +151,4 @@ def viewDataBase(request):
     listOfImagesPath=['./media/'+i for i in listOfImages]
     context={'listOfImagesPath':listOfImagesPath}
     return render(request,'viewDB.html',context)
+
