@@ -21,9 +21,10 @@
              <br><br><br>
              <h4 style="font-weight: bold">步驟三、送出所選擇的圖檔及類別</h4>
              <input type="submit" value="上傳圖片" >
-             <h2>有可能的類別(按照順序)：</h2>
+             <br><br><br>
+             <h4 style="font-weight: bold">有可能的類別(按照順序)：</h4>
              {% for file in predictedLabel %}
-                 <h3>{{ file }}</h3>
+                 <h4>{{ file }}</h4>
              {% endfor %}
 
 

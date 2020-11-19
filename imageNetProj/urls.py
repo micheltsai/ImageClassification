@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from firstApp import views as firstviews
+
 from twoApp import views as twoviews
 from django.conf.urls.static import static
 from django.conf import settings
@@ -29,6 +30,7 @@ urlpatterns = [
     url('predictImage2',twoviews.predictImage2,name='predictImage2'),
     url('viewDataBase',firstviews.viewDataBase,name='viewDataBase'),
     url('viewDataBase2',twoviews.viewDataBase2,name='viewDataBase2'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
