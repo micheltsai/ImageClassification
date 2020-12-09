@@ -18,18 +18,14 @@ from django.urls import path
 from django.conf.urls import url
 from firstApp import views as firstviews
 
-from twoApp import views as twoviews
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$',firstviews.index,name='homepage'),
-    url('insect',twoviews.insect,name='insect'),
     url('predictImage',firstviews.predictImage,name='predictImage'),
-    url('predictImage2',twoviews.predictImage2,name='predictImage2'),
     url('viewDataBase',firstviews.viewDataBase,name='viewDataBase'),
-    url('viewDataBase2',twoviews.viewDataBase2,name='viewDataBase2'),
 
 ]
 
